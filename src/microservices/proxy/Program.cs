@@ -24,10 +24,10 @@ builder.Services.AddHttpClient("proxy", c => c.Timeout = TimeSpan.FromSeconds(30
 var app = builder.Build();
 
 // ── health-check ───────────────────────────────────────────────────────────
-app.Map("/health", () => Results.Ok(new { status = true }));
+app.MapGet("/health", () => Results.Ok(new { status = true }));
 
-// ── главный catch-all обработчик ───────────────────────────────────────────
-app.Run(async (HttpContext ctx) =>
+// ── главный catch-all: перехватывает всё кроме зарегистрированных эндпоинтов
+app.MapFallback(async (HttpContext ctx) =>
 {
     var path  = ctx.Request.Path.Value  ?? "/";
     var query = ctx.Request.QueryString.Value ?? "";
@@ -92,3 +92,4 @@ app.Run(async (HttpContext ctx) =>
 });
 
 app.Run();
+
