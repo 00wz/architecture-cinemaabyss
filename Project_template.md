@@ -49,6 +49,8 @@
    ```
 - Протестируйте постепенный переход, изменив переменную окружения MOVIES_MIGRATION_PERCENT в файле docker-compose.yml.
 
+[Прокси сервис](./architecture-cinemaabyss/src/microservices/proxy/)
+
 
 ### 2. Kafka
  Вам как архитектуру нужно также проверить гипотезу насколько просто реализовать применение Kafka в данной архитектуре.
@@ -61,6 +63,9 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+
+![Скрин тестов](./assets/task2_tests.jpg)
+![Скрин топиков](./assets/task2_kafkaTopics.jpg)
 
 # Задание 3
 
