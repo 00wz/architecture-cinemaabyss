@@ -11,8 +11,16 @@ spec:
     - host: cinemaabyss.example.com
       http:
         paths:
-          #дополните конфигурацию для /
-          ...
+          # Весь трафик идёт через API Gateway (proxy-service)
+          # proxy внутри маршрутизирует /api/movies по MOVIES_MIGRATION_PERCENT
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 8000
+          # Events-service напрямую (не через proxy) — нужен для тестов events
           - path: /api/events
             pathType: Prefix
             backend:
