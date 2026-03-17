@@ -49,7 +49,7 @@
    ```
 - Протестируйте постепенный переход, изменив переменную окружения MOVIES_MIGRATION_PERCENT в файле docker-compose.yml.
 
-[Прокси сервис](./architecture-cinemaabyss/src/microservices/proxy/)
+[Прокси сервис](https://github.com/00wz/architecture-cinemaabyss/tree/cinema/src/microservices/proxy)
 
 
 ### 2. Kafka
