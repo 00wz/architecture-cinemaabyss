@@ -66,6 +66,8 @@
 
 ![Скрин тестов](./assets/task2_tests.jpg)
 ![Скрин топиков](./assets/task2_kafkaTopics.jpg)
+![Скрин топика1](./assets/task2_userKafkaTopic.jpg)
+![Скрин топика2](./assets/task2_movieKafkaTopic.jpg)
 
 # Задание 3
 
