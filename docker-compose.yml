@@ -63,7 +63,9 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-monolith
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    restart: on-failure
     ports:
       - "8080:8080"
     environment:
@@ -79,7 +81,9 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-movies-service
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    restart: on-failure
     ports:
       - "8081:8081"
     environment:
@@ -114,9 +118,12 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-proxy-service
     depends_on:
-      - monolith
-      - movies-service
-      - events-service
+      monolith:
+        condition: service_started
+      movies-service:
+        condition: service_started
+      events-service:
+        condition: service_started
     ports:
       - "8000:8000"
     environment:
