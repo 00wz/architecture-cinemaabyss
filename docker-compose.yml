@@ -47,6 +47,12 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "kafka-topics.sh", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
     networks:
       - cinemaabyss-network
 
@@ -57,7 +63,9 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-monolith
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    restart: on-failure
     ports:
       - "8080:8080"
     environment:
@@ -73,7 +81,9 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-movies-service
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    restart: on-failure
     ports:
       - "8081:8081"
     environment:
@@ -89,8 +99,10 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-events-service
     depends_on:
-      - postgres
-      - kafka
+      postgres:
+        condition: service_started
+      kafka:
+        condition: service_healthy
     ports:
       - "8082:8082"
     environment:
@@ -106,9 +118,12 @@ services:
       dockerfile: Dockerfile
     container_name: cinemaabyss-proxy-service
     depends_on:
-      - monolith
-      - movies-service
-      - events-service
+      monolith:
+        condition: service_started
+      movies-service:
+        condition: service_started
+      events-service:
+        condition: service_started
     ports:
       - "8000:8000"
     environment:

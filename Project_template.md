@@ -5,7 +5,10 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+
+![Диаграмма](./assets/cynemabyss_diagram_2.0.png)
+
+[Ссылка на диаграмму](https://www.planttext.com?text=ZLPDSvim4Brd9lzXwqEBPvfmQ4yzfOap_KfQ6YUJeqU0Z5M3H2NXX7RwtxiIO0k4O_k29UrxkzgF1nTA4wch8ZyzUSLuabSfXPNMfVeGXf8ydMTChwguKbGcWclAzNaYYh3C2JUWCwNJdCNXrVkpo6mztDw41L6QIjnQN262C4xbUMaTd9vefdCALxXN41BNIi4PRArWnaWcIG71zJDwIcawDPY8IYLuO49u2vC7V4pQ9uWbw1M5GcmO1On9BuKi9XOrhp6AOd4fAfuIMGVAhX7eE9zCuQ-n1VnjemX8oHOPqVI9r6Z-CVe2dveL194KppNCgTomX4ud_MEpd3EUuGKnJRA6KZ2k0KE296Uu1PB-hgZIgebmuBNIguLgc0qlBZj7bdZtrnmX6qk8PeB3Qp1G8TcVPXryVRmFVnYZwPWVaqRbE39vL7iytH9ECgh0OWnPdygctUMwjHjxo31t2LKApvjo5LIJb6ZYyvQaBl22BdFKRXtaxh0-gwfYbKXMcYIvr7Dt_q0YUXo-2xePX7szEIxejdEX8HWfsomEIg5q9Z7VjXe6tspCVzv0OAje6tA6AOs9efDjRKUJx18sTHmmDhNqADiIxosUozlLOi3SrTBZtXRv87El3WFwNZqz7_rgTuvyLskoN1Eq_sQUzk9OAkm1k9HYtIYGBIueBIafSEm7-ZDeFYqaeaq0xs3UB0p7Z_WNJRIxO_vYWZSifI9i9HUMBAUsBVuvqeOYsOtAefJ288n06ksKdEJGfXEYziomVoOyHIgWdP4xBmulAYJBtKOswtuVyrG15vejMo5IeGKDcPAK6z6TVRULe3dRc9xiNq-BdSISdjpHl1NxlX9ZDpiMlRCnyNJ5rWCCLV1EL1hJyYB6axjZG2DQTWnidrWTW_LKQ0JKmdffymJcZf9KXO-IwUuT42QIfkRTG_91iTIHF5t4msJwOZI6yhCv9ZPZo3q9tQieGuxng9snjcCRMXXqVTsf9BwZSyRNks0wM3iShNdQJ4UzypToNt_Wnrz-1ZxiXE5KtqkMPMOSUtFSk7y3Lle0Fs6e98az6MVjf3Agufof5MO1BwIgmiYCypuRwHGFwG36qdt8ta_N8SIUjdW9rW1R2s_MjWhd0YvGBF43-3y0)
 
 # Задание 2
 
@@ -46,6 +49,8 @@
    ```
 - Протестируйте постепенный переход, изменив переменную окружения MOVIES_MIGRATION_PERCENT в файле docker-compose.yml.
 
+[Прокси сервис](https://github.com/00wz/architecture-cinemaabyss/tree/cinema/src/microservices/proxy)
+
 
 ### 2. Kafka
  Вам как архитектуру нужно также проверить гипотезу насколько просто реализовать применение Kafka в данной архитектуре.
@@ -58,6 +63,11 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka из UI http://localhost:8090 
+
+![Скрин тестов](./assets/task2_tests.jpg)
+![Скрин топиков](./assets/task2_kafkaTopics.jpg)
+![Скрин топика1](./assets/task2_userKafkaTopic.jpg)
+![Скрин топика2](./assets/task2_movieKafkaTopic.jpg)
 
 # Задание 3
 
@@ -275,6 +285,8 @@ cat .docker/config.json | base64
 #### Шаг 3
 Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
 
+![скриншота вывода при вызове https://cinemaabyss.example.com/api/movies](./assets/task3_cinemaabyss.example.com_output.jpg)
+![скриншот вывода event-service после вызова тестов](./assets/task3_event-serviceLogsAfterTests.jpg)
 
 # Задание 4
 Для простоты дальнейшего обновления и развертывания вам как архитектуру необходимо так же реализовать helm-чарты для прокси-сервиса и проверить работу 
@@ -349,6 +361,9 @@ minikube tunnel
 Потом вызовите 
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
+
+![скриншот развертывания helm](./assets/task4_helmDeploy.jpg)
+![вывода https://cinemaabyss.example.com/api/movies](./assets/task4_cinemaabyss.example.com_output.jpg)
 
 ## Удаляем все
 
